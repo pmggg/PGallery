@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PGALLERY</title>
+        <meta charset="utf-8">
+        <meta name="description" content="Personal Art Website">
+        <meta name="keywords" content="Artworks">
+        <meta name="author" content="Pamela Domingo">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'blog/css/forum.css' %}"/>
+        <script src="{% static 'blog/javascript/forum.js' %}"></script>
+    </head>
+    <body>
+        <header>
+            <h2>PGALLERY</h2>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="/">P1</a></li>
+                <li><a href="/">P2</a></li>
+                <li><a href="forum.html">FORUM</a></li>
+                <li><a href="/">ABOUT</a></li>
+            </ul>
+        </nav>
+        
+        <hr>
+        <section>
+            <div class="top-info">
+                <img src="{% static 'blog/dp.png' %}" alt="avatar" id = "dp">
+                <p><br><br><br><br> We are glad to have you here in our site! <br> <br> Arts has become part of our hobbies during this pandemic to relieve our worries. We made this website to show you the product of self-taught art. To inspire others to start without hesitation is what we aim for this project. <br> <br>Hope to hear from you more! <br><br></p>
+
+                <h1>SHARE US YOUR THOUGHTS!</h1>
+            </div>
+            <div class="form-container">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <table class="form-table" >
+                        <tr>
+                            <td>NAME: </td>
+                            <td>E-MAIL: </td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="name" id="input-name" required></td>
+                            <td><input type="email" name="email" id="input-email" required></td>
+                        </tr>
+                        <tr>
+                            <td>COMMENT: </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><textarea name="comment" id="input-comment" cols="2" required></textarea></td>
+                        </tr>
+                    </table>
+                    <button type="submit" id="button-submit" name="button-submit" value="POST" onclick="addComment();">SUBMIT</button>
+                </form>
+            </div>
+            <div class="comments-container">
+                <table id="show">
+                    <tr>
+                        <!-- users' comments -->
+                    </tr>
+                    {% for post in post_objects %}
+                    <tr>
+                       <td>{{ post|linebreaks }}</d>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+
+        </section>
+
+       
+        <footer>
+            <hr>
+            <h2>PGALLERY © 2021</h2>
+            <div id="artists">
+                <p>PAMELA DOMINGO</p>
+                <p>PAULA DOMINGO</p>
+            </div>
+        </footer>
+    </body>
+
+</html>
